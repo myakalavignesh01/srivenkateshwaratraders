@@ -1,0 +1,6 @@
+{
+  "name": "Sri Venkateshwara Traders",
+  "description": "Smart Agriculture Business Platform and Business Management System for Sri Venkateshwara Traders in Madharam, Urkonda Mandal, Nagarkurnool.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
