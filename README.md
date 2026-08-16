@@ -1,6 +1,6 @@
 # Srivenkateshwara Traders
 
-Professional business repository for Srivenkateshwara Traders — a TypeScript-based application supporting our trading and inventory operations.
+Professional business repository for Srivenkateshwara Traders — a TypeScript + React application used to support trading and inventory operations.
 
 > Repository description: .
 
@@ -8,25 +8,31 @@ Professional business repository for Srivenkateshwara Traders — a TypeScript-b
 
 ## About
 
-Srivenkateshwara Traders provides a reliable, maintainable software foundation for managing inventory, sales, and customer records for a retail trading business. This repository contains a TypeScript application and related tooling to support business operations.
+This repository contains a TypeScript codebase (frontend + lightweight Node server) intended for managing inventory, sales, and business reporting for Srivenkateshwara Traders. The project uses React for the UI and modern tooling (Vite, esbuild) with a small Express server entrypoint (`server.ts`).
 
-## Key Features
-
-- Inventory management (stock levels, SKU tracking)
-- Sales order processing and invoices
-- Customer management and contact records
-- Reporting and export (CSV / Excel)
-- Role-based access and simple authentication
-- Extensible architecture built with TypeScript
-
-## Technology Stack
+## Technology Stack (inferred from package.json)
 
 - Language: TypeScript
-- Runtime: Node.js
-- Data storage: (configure your database: PostgreSQL / MySQL / SQLite)
-- Build tools: npm / pnpm / yarn
+- Frontend: React (react, react-dom)
+- Dev server / Bundler: Vite
+- Server: Express (server.ts)
+- Styling: Tailwind CSS (tailwindcss, @tailwindcss/vite)
+- Charts: Recharts
+- Dev runner: tsx
+- Build helper: esbuild
+- Environment variables: dotenv
+- Misc: @google/genai, lucide-react, motion
 
-> Note: Update the Tech Stack section with concrete libraries and frameworks used (Express, NestJS, React, TypeORM, Prisma, etc.).
+Dev dependencies include TypeScript, @types/node, @types/express, esbuild, tsx, autoprefixer, and tailwindcss.
+
+## NPM scripts (from package.json)
+
+- `npm run dev` — run the development server: `tsx server.ts`
+- `npm run build` — build frontend and server: `vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs`
+- `npm run start` — run production server: `node dist/server.cjs`
+- `npm run preview` — preview the built frontend using `vite preview`
+- `npm run clean` — remove build artifacts: `rm -rf dist server.js`
+- `npm run lint` — TypeScript type check: `tsc --noEmit`
 
 ## Quick Start
 
@@ -39,86 +45,44 @@ Srivenkateshwara Traders provides a reliable, maintainable software foundation f
 
    npm install
 
-   (or `pnpm install` / `yarn install` depending on the project)
+   (or `pnpm install` / `yarn install` if you prefer)
 
 3. Configure environment
 
-   - Copy the example env file and update values:
+   - If present, copy the example env file and update values:
 
      cp .env.example .env
 
-   - Set database connection, secrets, and other environment variables in `.env`.
+   - Typical environment variables to add:
+     - PORT - application port (default: 3000)
+     - Any API keys or service credentials your app needs
 
-4. Run migrations (if applicable)
-
-   npm run migrate
-
-5. Start the app (development)
+4. Run in development
 
    npm run dev
 
-6. Build for production
+   This uses `tsx server.ts` to run the server alongside Vite's dev server.
+
+5. Build and run production
 
    npm run build
    npm run start
 
+## Recommendations & Next Steps
 
-## Directory Structure (suggested)
+- Add a `.env.example` to document required environment variables.
+- Add database client/ORM packages and configuration if you plan to persist data (e.g., Prisma, pg, mysql2).
+- Add a `test` script and test runner (Vitest or Jest) for CI coverage.
+- Add a LICENSE file (MIT or other) and a CONTRIBUTING.md with contribution guidelines.
+- Consider adding GitHub Actions workflow for lint/build/test on PRs.
 
-- src/            - Application source code (TypeScript)
-- scripts/        - Utility scripts
-- config/         - Configuration files
-- tests/          - Unit and integration tests
-- .env.example    - Example environment variables
+## Contributing
 
-Adjust this section if your repository has a different layout.
+- Branch per feature or fix: `git checkout -b feat/<name>`
+- Open a Pull Request with a clear description and tests for non-trivial changes
+- Run `npm run lint` before submitting changes
 
-## Configuration
-
-Ensure the following environment variables are present in `.env`:
-
-- DATABASE_URL - connection string for the database
-- PORT - application port (default: 3000)
-- JWT_SECRET - JWT signing secret (if using JWT)
-
-
-## Development & Contribution
-
-We welcome contributions that improve reliability, security, and user experience.
-
-- Create a branch per feature or bugfix: `git checkout -b feat/your-feature`
-- Open a Pull Request with a clear description and tests where relevant
-- Follow the repository's code style and include unit tests for critical logic
-
-If you want help getting started, open an issue describing what you'd like to work on.
-
-## Testing
-
-Run unit and integration tests with:
-
-   npm test
-
-(Replace with the project's test command if different.)
-
-## Deployment
-
-Provide deployment instructions for your environment (Heroku, Vercel, Docker, AWS, or on-premises):
-
-- Build the project: `npm run build`
-- Create environment variables on the target host
-- Start the service: `npm run start` (or run using a process manager like PM2)
-
-## Security & Compliance
-
-- Keep secrets out of version control; use env vars or a secrets manager.
-- Rotate keys and secrets regularly.
-- Review dependencies for vulnerabilities (use `npm audit` or Snyk).
-
-## License
-
-Specify your license here (MIT, Apache-2.0, or a commercial license). If you are unsure, add a LICENSE file or consult legal counsel.
-
-## Contact & Business Info
+## Contact
 
 Srivenkateshwara Traders
 
@@ -126,13 +90,11 @@ Srivenkateshwara Traders
 - Email: [business@example.com]
 - Website: [https://your-business-site.example]
 
-For commercial inquiries, support, or partnerships, please use the contact details above.
-
 ---
 
 If you'd like, I can:
-- Tailor this README to include exact tech stack details from the repo
-- Add a LICENSE file
-- Include screenshots or badges
+- Add a .env.example and LICENSE file now
+- Create CONTRIBUTING.md and CI workflow
+- Extract usage examples from `server.ts` or `src/` and add them to the README
 
-Please tell me which of these you'd like next, or provide the missing details and I'll update the README accordingly.
+Tell me which of these you'd like and I'll make the changes.
